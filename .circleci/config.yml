@@ -27,4 +27,4 @@ workflows:
           aws-region: AWS_DEFAULT_REGION
           family: 'vr-go-server-service'
           cluster-name: 'default'
-          container-image-name-updates: 'container=vr-go-server-service,tag=${CIRCLE_SHA1}'
+          container-image-name-updates: 'container=vr-go-server,tag=${CIRCLE_SHA1}'
