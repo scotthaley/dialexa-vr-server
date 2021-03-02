@@ -54,9 +54,11 @@ func main() {
 	room = NewRoom()
 	go broadcastLoop()
 
+	fs := http.FileServer(http.Dir("./static"))
+
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", index).Methods("GET")
 	router.HandleFunc("/join/{Name}", join)
+	router.PathPrefix("/").Handler(fs)
 
 	allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Content-Length", "Date", "X-Content-Type-Options"})
 	allowedOrigins := handlers.AllowedOrigins([]string{"*"})
