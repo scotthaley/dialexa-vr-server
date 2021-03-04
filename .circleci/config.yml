@@ -25,6 +25,8 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           aws-region: AWS_DEFAULT_REGION
+          # This is the task definition name for some dumb reason... family? Wtf??
           family: 'vr-go-server'
+          service-name: 'vr-go-server-service'
           cluster-name: 'default'
           container-image-name-updates: 'container=vr-go-server,tag=${CIRCLE_SHA1}'
