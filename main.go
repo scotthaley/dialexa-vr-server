@@ -44,8 +44,8 @@ func broadcastLoop() {
 	}
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello World")
+func health(w http.ResponseWriter, r *http.Request) {
+	return
 }
 
 func main() {
@@ -58,6 +58,7 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/join/{Name}", join)
+	router.HandleFunc("/health", health)
 	router.PathPrefix("/").Handler(fs)
 
 	allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Content-Length", "Date", "X-Content-Type-Options"})
