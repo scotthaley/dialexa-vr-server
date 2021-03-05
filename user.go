@@ -19,8 +19,8 @@ type User struct {
 	Name   string
 	Pos    Vector3
 	Rot    Vector3
+	Active bool
 	conn   *websocket.Conn
-	active bool
 }
 
 func NewUser(name string, conn *websocket.Conn) *User {
@@ -29,8 +29,8 @@ func NewUser(name string, conn *websocket.Conn) *User {
 		Name:   name,
 		Pos:    Vector3{X: 0, Y: 0, Z: 0},
 		Rot:    Vector3{X: 0, Y: 0, Z: 0},
+		Active: true,
 		conn:   conn,
-		active: true,
 	}
 }
 
