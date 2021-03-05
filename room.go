@@ -34,7 +34,7 @@ func (r *Room) BroadcastState() {
 
 func (r *Room) removeUser(u *User) {
 	u.conn.Close()
-	u.active = false
+	u.Active = false
 }
 
 func (r *Room) handleUserMessages(u *User) {
@@ -53,7 +53,7 @@ func (r *Room) handleUserMessages(u *User) {
 func (r *Room) activeUsers() []*User {
 	var users = make([]*User, 0)
 	for _, u := range r.Users {
-		if u.active {
+		if u.Active {
 			users = append(users, u)
 		}
 	}
