@@ -1,6 +1,9 @@
 package main
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+	"strings"
+)
 
 type Room struct {
 	id    string
@@ -46,7 +49,15 @@ func (r *Room) handleUserMessages(u *User) {
 			break
 		}
 
-		u.HandleMessage(m)
+		message := string(m)
+
+		if strings.Contains(message, "(event)") {
+			for _, u := range r.activeUsers() {
+				u.BroadcastBytes(m)
+			}
+		} else {
+			u.HandleMessage(message)
+		}
 	}
 }
 

@@ -34,8 +34,7 @@ func NewUser(name string, conn *websocket.Conn) *User {
 	}
 }
 
-func (u *User) HandleMessage(m []byte) {
-	message := string(m)
+func (u *User) HandleMessage(message string) {
 	if strings.Contains(message, "|") {
 		cmd := strings.Split(message, "|")
 		switch cmd[0] {
